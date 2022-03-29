@@ -15,7 +15,7 @@
 
 
 <div class="example-wrapper text-center">
-    <h1 clas>Tous les eleves du collège ! ✅</h1> <br><br>
+    <h1>Tous les eleves du collège ! ✅</h1> <br><br>
 
    
     <ul class="text-center">
@@ -23,7 +23,9 @@
         {% for eleve in eleves %}
 
         <li style="list-style: none"> <b>Prénom</b> : {{eleve.prenom}}, <b>Nom</b> : {{eleve.nom}} </li> <p> <b>Dans la classe</b> : {{eleve.classe.nom}}        <a class="navbar-brand" href="{{ path('app_eleve_delete', {id: eleve.id}) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr ?')"><i class="fa fa-trash" aria-hidden="true"></i></a></p>
-
+        <a href="{{ path('app_eleve_details', {id: eleve.id}) }}"><i class="fa fa-eye" aria-hidden="true"></i></a>
+        <h1>------------------------------</h1>
+        <br>
         {% endfor %} 
     </ul>
 </div>

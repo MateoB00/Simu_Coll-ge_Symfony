@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use DateTime;
 use App\Entity\Eleve;
 use App\Form\ProfType;
 use App\Form\EleveType;
+use App\Repository\NoteRepository;
 use App\Repository\EleveRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -43,6 +45,21 @@ class ElevesController extends AbstractController
                 'name' => 'Eleve'
             ]);
         }
+
+    }
+
+
+    #[Route('/eleve/details/{id}', name: 'app_eleve_details')]
+    public function details($id, EleveRepository $er): Response 
+    {
+        $eleve = $er->find($id);
+        // $date = Eleve::getDatedenaissance();
+        // $newDate = DateTime::createFromFormat('Y-m-d', $date);
+        
+
+        return $this->render('eleves/details.html.twig', [
+            'eleve' => $eleve,
+        ]);
 
     }
 
