@@ -45,4 +45,13 @@ class ProfsController extends AbstractController
         }
 
     }
+
+
+    #[Route('/prof/delete/{id}', name: 'app_prof_delete')]
+    public function delete($id, ProfRepository $pr) {
+        $prof = $pr->find($id);
+        $pr->remove($prof);
+
+        return $this->redirectToRoute('app_liste_profs');
+    }
 }

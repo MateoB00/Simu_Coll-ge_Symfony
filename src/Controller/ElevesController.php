@@ -45,4 +45,13 @@ class ElevesController extends AbstractController
         }
 
     }
+
+
+    #[Route('/eleve/delete/{id}', name: 'app_eleve_delete')]
+    public function delete($id, EleveRepository $er) {
+        $eleve = $er->find($id);
+        $er->remove($eleve);
+
+        return $this->redirectToRoute('app_liste_eleves');
+    }
 }

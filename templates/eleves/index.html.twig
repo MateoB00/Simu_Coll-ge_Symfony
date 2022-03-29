@@ -9,6 +9,8 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 
 
@@ -20,7 +22,7 @@
 
         {% for eleve in eleves %}
 
-        <li style="list-style: none"> <b>Prénom</b> : {{eleve.prenom}}, <b>Nom</b> : {{eleve.nom}} </li> <p> <b>Dans la classe</b> : {{eleve.classe.nom}}</p>
+        <li style="list-style: none"> <b>Prénom</b> : {{eleve.prenom}}, <b>Nom</b> : {{eleve.nom}} </li> <p> <b>Dans la classe</b> : {{eleve.classe.nom}}        <a class="navbar-brand" href="{{ path('app_eleve_delete', {id: eleve.id}) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr ?')"><i class="fa fa-trash" aria-hidden="true"></i></a></p>
 
         {% endfor %} 
     </ul>
