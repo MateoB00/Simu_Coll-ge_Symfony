@@ -22,6 +22,12 @@ class Note
     #[ORM\Column(type: 'date')]
     private $date;
 
+    #[ORM\ManyToOne(targetEntity: Eleve::class, inversedBy: 'note')]
+    private $eleve;
+
+    #[ORM\ManyToOne(targetEntity: matiere::class, inversedBy: 'notes')]
+    private $matiere;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +65,30 @@ class Note
     public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getEleve(): ?Eleve
+    {
+        return $this->eleve;
+    }
+
+    public function setEleve(?Eleve $eleve): self
+    {
+        $this->eleve = $eleve;
+
+        return $this;
+    }
+
+    public function getMatiere(): ?matiere
+    {
+        return $this->matiere;
+    }
+
+    public function setMatiere(?matiere $matiere): self
+    {
+        $this->matiere = $matiere;
 
         return $this;
     }

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProfRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ProfRepository::class)]
@@ -21,6 +23,18 @@ class Prof
 
     #[ORM\Column(type: 'date')]
     private $datedenaissance;
+
+    #[ORM\ManyToOne(targetEntity: Matiere::class, inversedBy: 'prof')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $matiere;
+
+    #[ORM\OneToMany(mappedBy: 'prof', targetEntity: Classe::class)]
+    private $classe;
+
+    public function __construct()
+    {
+        $this->classe = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -59,6 +73,48 @@ class Prof
     public function setDatedenaissance(\DateTimeInterface $datedenaissance): self
     {
         $this->datedenaissance = $datedenaissance;
+
+        return $this;
+    }
+
+    public function getMatiere(): ?Matiere
+    {
+        return $this->matiere;
+    }
+
+    public function setMatiere(?Matiere $matiere): self
+    {
+        $this->matiere = $matiere;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Classe>
+     */
+    public function getClasse(): Collection
+    {
+        return $this->classe;
+    }
+
+    public function addClasse(Classe $classe): self
+    {
+        if (!$this->classe->contains($classe)) {
+            $this->classe[] = $classe;
+            $classe->setProf($this);
+        }
+
+        return $this;
+    }
+
+    public function removeClasse(Classe $classe): self
+    {
+        if ($this->classe->removeElement($classe)) {
+            // set the owning side to null (unless already changed)
+            if ($classe->getProf() === $this) {
+                $classe->setProf(null);
+            }
+        }
 
         return $this;
     }

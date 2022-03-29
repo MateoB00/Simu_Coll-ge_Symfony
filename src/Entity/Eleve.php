@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EleveRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: EleveRepository::class)]
@@ -21,6 +23,17 @@ class Eleve
 
     #[ORM\Column(type: 'date')]
     private $datedenaissance;
+
+    #[ORM\ManyToOne(targetEntity: Classe::class, inversedBy: 'eleve')]
+    private $classe;
+
+    #[ORM\OneToMany(mappedBy: 'eleve', targetEntity: note::class)]
+    private $note;
+
+    public function __construct()
+    {
+        $this->note = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -59,6 +72,48 @@ class Eleve
     public function setDatedenaissance(\DateTimeInterface $datedenaissance): self
     {
         $this->datedenaissance = $datedenaissance;
+
+        return $this;
+    }
+
+    public function getClasse(): ?Classe
+    {
+        return $this->classe;
+    }
+
+    public function setClasse(?Classe $classe): self
+    {
+        $this->classe = $classe;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, note>
+     */
+    public function getNote(): Collection
+    {
+        return $this->note;
+    }
+
+    public function addNote(note $note): self
+    {
+        if (!$this->note->contains($note)) {
+            $this->note[] = $note;
+            $note->setEleve($this);
+        }
+
+        return $this;
+    }
+
+    public function removeNote(note $note): self
+    {
+        if ($this->note->removeElement($note)) {
+            // set the owning side to null (unless already changed)
+            if ($note->getEleve() === $this) {
+                $note->setEleve(null);
+            }
+        }
 
         return $this;
     }
