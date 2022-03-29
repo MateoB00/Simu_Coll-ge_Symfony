@@ -39,6 +39,7 @@
                 <td>{{note.note}}</td>
                 <td>{{note.coefficient}}</td>
                 <td>{{note.matiere.nom}}</td>
+                <td>{{(note.note) * note.coefficient / 20}}</td> / nombre de notes
                 {% endfor %}
             </tr>
     </tbody>
