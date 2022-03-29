@@ -2,10 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\ClasseRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Entity\Prof;
+use App\Entity\Eleve;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ClasseRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: ClasseRepository::class)]
 class Classe
@@ -24,7 +26,7 @@ class Classe
     #[ORM\ManyToOne(targetEntity: Prof::class, inversedBy: 'classe')]
     private $prof;
 
-    #[ORM\OneToMany(mappedBy: 'classe', targetEntity: eleve::class)]
+    #[ORM\OneToMany(mappedBy: 'classe', targetEntity: Eleve::class)]
     private $eleve;
 
     public function __construct()

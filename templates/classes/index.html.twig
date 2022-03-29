@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+
+<div class="example-wrapper text-center">
+    <h1 clas>Toutes les classes du collège ! ✅</h1> <br><br>
+
+   
+    <ul class="text-center">
+
+        {% for classe in classes %}
+
+        <li style="list-style: none"> <b>Nom de la classe</b> : {{classe.nom}}, <b>Niveau de la classe</b> : {{classe.niveau}} </li> <p> <b>Professeur Principal</b> : {{classe.prof.nom}}, {{classe.prof.prenom}}</p>
+
+        {% endfor %} 
+    </ul>
+</div>
+
+<div class="container">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{{ path('app_accueil')}}" >Accueil</a>
+  </nav>
+</div>

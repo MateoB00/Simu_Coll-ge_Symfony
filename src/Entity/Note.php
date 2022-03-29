@@ -2,8 +2,10 @@
 
 namespace App\Entity;
 
-use App\Repository\NoteRepository;
+use App\Entity\Eleve;
+use App\Entity\Matiere;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\NoteRepository;
 
 #[ORM\Entity(repositoryClass: NoteRepository::class)]
 class Note
@@ -25,7 +27,7 @@ class Note
     #[ORM\ManyToOne(targetEntity: Eleve::class, inversedBy: 'note')]
     private $eleve;
 
-    #[ORM\ManyToOne(targetEntity: matiere::class, inversedBy: 'notes')]
+    #[ORM\ManyToOne(targetEntity: Matiere::class, inversedBy: 'notes')]
     private $matiere;
 
     public function getId(): ?int

@@ -2,10 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\MatiereRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Entity\Note;
+use App\Entity\Prof;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\MatiereRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: MatiereRepository::class)]
 class Matiere
