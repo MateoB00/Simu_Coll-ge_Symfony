@@ -13,14 +13,14 @@
 
 
 <div class="example-wrapper text-center">
-    <h1 clas>Tous les eleves du collège ! ✅</h1> <br><br>
+    <h1 clas>Toutes les matières du collège ! ✅</h1> <br><br>
 
    
     <ul class="text-center">
+<b>Nom des matières exercé au collège</b>   
+        {% for matiere in matieres %}
 
-        {% for eleve in eleves %}
-
-        <li style="list-style: none"> <b>Prénom</b> : {{eleve.prenom}}, <b>Nom</b> : {{eleve.nom}} </li> <p> <b>Dans la classe</b> : {{eleve.classe.nom}}</p>
+        <li style="list-style: none"> - {{matiere.nom}}
 
         {% endfor %} 
     </ul>
@@ -29,7 +29,6 @@
 <div class="container">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="{{ path('app_accueil')}}" >Accueil</a>
-        <a class="navbar-brand" href="{{ path('app_eleve_create')}}" >Créer un eleve</a>
+        <a class="navbar-brand" href="{{ path('app_matiere_create')}}" >Créer une matiere</a>
   </nav>
 </div>
-
